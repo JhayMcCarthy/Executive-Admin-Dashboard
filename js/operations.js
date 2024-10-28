@@ -82,14 +82,14 @@ var options = {
   plotOptions: {
     radialBar: {
       hollow: {
-        size: '40%',
+        size: '60%',
       },
       dataLabels: {
         name: {
-          fontSize: '18px',
+          fontSize: '20px',
         },
         value: {
-          fontSize: '24px',
+          fontSize: '20px',
           color: '#333',
           formatter: function(val) {
             return val + "%";
