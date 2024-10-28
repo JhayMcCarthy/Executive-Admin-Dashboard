@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
     },
-    colors: ["#32CD32", "#0000FF"], // colors for cashflow and non-cashflow
+    colors: ["#00DA6F", "#0091FF"], // colors for cashflow and non-cashflow
   };
   var chart = new ApexCharts(document.querySelector("#total-active-projects"), options);
   chart.render();
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     chart: {
       id: 'warehouse-availability',
       type: 'area',
-      height: 400,
+      height: 350,
       sparkline: {
         enabled: true,
       },
@@ -211,14 +211,14 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "line",
       fontFamily: "inherit",
       foreColor: "#0000ff",
-      height: 450,
+      height: 300,
       width: "100%",
       zoom: {
         enabled: false,
       },
       offsetX: -10,
     },
-    colors: ["#ff0000", "#0000ff"],
+    colors: ["#FF562E", "#2BDCE8"],
     plotOptions: {},
     dataLabels: {
       enabled: false,
@@ -409,17 +409,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ],
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    colors: ['#008000', '#CC0066'],
+    colors: ['#00DC76', '#D50000'],
     xaxis: {
         type: 'category'
     },
     legend: {
         show: true,
-        floating: true,
+        floating: false, // Set to false to position at the bottom
         fontSize: '16px',
-        position: 'top',
-        offsetX: 60,
-        offsetY: 0
+        position: 'bottom' // Move legend to the bottom
     },
     responsive: [{
         breakpoint: 480,
@@ -436,59 +434,7 @@ chart.render();
 
 
   // -----------------------------------------------------------------------
-  // Activity Output vs Service Experience
-  // -----------------------------------------------------------------------
-
-  var chart_users2 = {
-    series: [
-      {
-        name: "April 07 ",
-        data: [0, 20, 15, 19, 14, 25, 30],
-      },
-      {
-        name: "Last Week",
-        data: [0, 8, 19, 13, 26, 16, 25],
-      },
-    ],
-    chart: {
-      fontFamily: "inherit",
-      height: 100,
-      type: "line",
-      toolbar: {
-        show: false,
-      },
-      sparkline: {
-        enabled: true,
-      },
-    },
-    colors: ["var(--bs-primary)", "var(--bs-primary-bg-subtle)"],
-    grid: {
-      show: false,
-    },
-    stroke: {
-      curve: "smooth",
-      colors: ["var(--bs-primary)", "var(--bs-primary-bg-subtle)"],
-      width: 2,
-    },
-    markers: {
-      colors: ["var(--bs-primary)", "var(--bs-primary-bg-subtle)"],
-      strokeColors: "transparent",
-    },
-    tooltip: {
-      theme: "dark",
-      x: {
-        show: false,
-      },
-      followCursor: true,
-    },
-  };
-  var chart_line_basic = new ApexCharts(
-    document.querySelector("#sales-overview"),
-    chart_users2
-  );
-  chart_line_basic.render();
-  // -----------------------------------------------------------------------
-  // Total settlements
+  // Activity Output Vs Service Experience
   // -----------------------------------------------------------------------
   var activityOutput = {
     series: [
@@ -566,7 +512,7 @@ chart.render();
   };
   
   var chart_area_spline = new ApexCharts(
-    document.querySelector("#activity-output"),
+    document.querySelector("#activity-output-vs-service"),
     activityOutput
   );
   chart_area_spline.render();

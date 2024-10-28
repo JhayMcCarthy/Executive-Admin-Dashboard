@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var options = {
   chart: {
     type: 'line',
-    height: 300,
+    height: 400,
   },
   series: [{
     name: 'Employees',
@@ -140,54 +140,54 @@ var options = {
   }
 };
 
-var employeeGrowthCurveChart = new ApexCharts(document.querySelector("#employeeGrowthCurveChart"), options);
+var employeeGrowthCurveChart = new ApexCharts(document.querySelector("#employeeGrowthCurve"), options);
 employeeGrowthCurveChart.render();
 
 //===================================
 // Contract Expiry
 //===================================
 var options = {
-    chart: {
-      type: 'bar',
-      height: 300,
-      stacked: false,
-      toolbar: {
-        show: false
-      }
-    },
-    series: [{
-      name: 'Expiring Contracts',
-      data: [5, 8, 3, 6, 10]
-    }],
-    xaxis: {
-      categories: ['January', 'February', 'March', 'April', 'May'],
-      title: {
-        text: 'Number of Contracts'
-      }
-    },
-    yaxis: {
-      title: {
-        text: 'Months'
-      },
-      min: 0
-    },
-    colors: ['#ff6384'],
-    plotOptions: {
-      bar: {
-        horizontal: true,
-      }
+  chart: {
+    type: 'bar',
+    height: 300,
+    stacked: false,
+    toolbar: {
+      show: false
     }
-  };
-  
-  var contractExpiryChart = new ApexCharts(document.querySelector("#contractExpiryChart"), options);
-  contractExpiryChart.render();
+  },
+  series: [{
+    name: 'Expiring Contracts',
+    data: [5, 8, 3, 6, 10, 2, 7, 8, 1, 4, 9, 8]
+  }],
+  xaxis: {
+    title: {
+      text: 'Months'
+    },
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  },
+  yaxis: {
+    title: {
+      text: 'Number of Contracts'
+    },
+    min: 0
+  },
+  colors: ['#ff6384'],
+  plotOptions: {
+    bar: {
+      horizontal: false,
+    }
+  }
+};
+
+var contractExpiryChart = new ApexCharts(document.querySelector("#contractExpiry"), options);
+contractExpiryChart.render();
 
 //=============================
 // Employee Cost over sales
 //=============================
 var options = {
     chart: {
-      height: 400,
+      height: 415,
       type: 'bar',
     },
     series: [{
@@ -256,7 +256,7 @@ var options = {
     colors: ['#4bc0c0', '#ff6384', '#9966ff']
   };
   
-  var cultureValueSaturationChart = new ApexCharts(document.querySelector("#cultureValueSaturationChart"), options);
+  var cultureValueSaturationChart = new ApexCharts(document.querySelector("#cultureValueSaturation"), options);
   cultureValueSaturationChart.render();
 
 

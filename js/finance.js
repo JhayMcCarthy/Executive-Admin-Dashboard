@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var options = {
   chart: {
     type: 'radialBar',
-    height: 350,
+    height: 370,
     toolbar: { show: false },
     sparkline: {
       enabled: true
@@ -359,6 +359,7 @@ chart.render();
     // -----------------------------------------------------------------------
     // Define the gross profit data
     var grossProfitData = [7512]; // Example gross profit value in dollars
+var grossProfitMargin = 45; // Example gross profit margin in percentage
 
 // Define the chart options for a radial bar chart
 var options = {
@@ -418,6 +419,10 @@ var options = {
 // Create the radial bar chart
 var chart = new ApexCharts(document.querySelector("#gross-profit"), options);
 chart.render();
+
+// Display the gross profit margin as text
+document.querySelector("#gross-margin-text").innerText = "Gross Profit Margin: " + grossProfitMargin + "%";
+
 
 
     
