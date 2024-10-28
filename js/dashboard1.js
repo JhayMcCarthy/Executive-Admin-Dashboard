@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     chart: {
       type: "donut",
       height: 400,
-      width: 400,
+      width: "100%",
     },
     labels: ["Cashflow", "Non-Cashflow"],
     legend: {
@@ -289,75 +289,102 @@ document.addEventListener("DOMContentLoaded", function () {
   // =====================================
 
   // Define chart options
-var options = {
-  series: [{
-    name: 'Network Latency',
-    data: [20, 30, 15, 40, 50, 60, 70, 80, 90, 100]
-  }],
-  chart: {
-    height: 350,
-    type: 'line',
-    animations: {
-      enabled: true,
-      easing: 'easeinout',
-      speed: 300,
-      animateGradually: {
+  var options = {
+    series: [{
+      name: 'Network Latency',
+      data: [20, 30, 15, 40, 50, 60, 70, 80, 90, 100]
+    }],
+    chart: {
+      height: 350,
+      type: 'line',
+      animations: {
         enabled: true,
-        delay: 500
+        easing: 'easeinout',
+        speed: 300,
+        animateGradually: {
+          enabled: true,
+          delay: 500
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350
+        }
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      width: 2
+    },
+    xaxis: {
+      categories: ['10:00', '10:05', '10:10', '10:15', '10:20', '10:25', '10:30', '10:35', '10:40', '10:45']
+    },
+    yaxis: {
+      title: {
+        text: 'Latency (ms)'
       },
-      dynamicAnimation: {
-        enabled: true,
-        speed: 350
-      }
-    }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    width: 2
-  },
-  xaxis: {
-    categories: ['10:00', '10:05', '10:10', '10:15', '10:20', '10:25', '10:30', '10:35', '10:40', '10:45']
-  },
-  yaxis: {
-    title: {
-      text: 'Latency (ms)'
+      min: 0,
+      max: 100
     },
-    min: 0,
-    max: 100
-  },
-  grid: {
-    padding: {
-      top: 10,
-      bottom: 10,
-      left: 20,
-      right: 20
-    }
-  },
-  tooltip: {
-    x: {
-      format: 'HH:mm'
+    grid: {
+      padding: {
+        top: 10,
+        bottom: 10,
+        left: 20,
+        right: 20
+      }
     },
-    y: {
-      formatter: function(value) {
-        return value + ' ms'
+    tooltip: {
+      x: {
+        format: 'HH:mm'
+      },
+      y: {
+        formatter: function(value) {
+          return value + ' ms';
+        }
       }
-    }
-  },
-  responsive: [{
-    breakpoint: 1400,
-    options: {
-      chart: {
-        height: 250
+    },
+    responsive: [{
+      breakpoint: 1400,
+      options: {
+        chart: {
+          height: 450
+        }
       }
+    }]
+  };
+  
+  // Create chart
+  var chart = new ApexCharts(document.querySelector("#Network-Latency"), options);
+  chart.render();
+  
+  // Simulate real-time updates
+  function getRandomLatency() {
+    return Math.floor(Math.random() * 100) + 1; // Generate random latency between 1 and 100
+  }
+  
+  function updateChart() {
+    var currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Get current time
+    
+    // Add new data point to the series
+    options.series[0].data.push(getRandomLatency());
+  
+    // Update x-axis categories (time)
+    options.xaxis.categories.push(currentTime);
+  
+    // Keep the last 10 data points only
+    if (options.series[0].data.length > 10) {
+      options.series[0].data.shift();
+      options.xaxis.categories.shift();
     }
-  }]
-}
-
-// Create chart
-var chart = new ApexCharts(document.querySelector("#Network-Latency"), options);
-chart.render();
+  
+    chart.updateSeries([{ data: options.series[0].data }], true);
+  }
+  
+  // Update the chart every 2 seconds to simulate real-time updates
+  setInterval(updateChart, 2000);
+  
 
 
 
@@ -370,7 +397,6 @@ chart.render();
         height: 350,
         offsetX: 0,
         offsetY: 0
-        
     },
     series: [
         {
